@@ -1,0 +1,3033 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>党巍 | AI/数据产品经理</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Material Design Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    :root {
+      /* Updated Color Palette with Better Contrast */
+      --primary-color: #3d31d1;
+      --primary-light: rgba(61, 49, 209, 0.1);
+      --primary-dark: #2c22a8;
+      --secondary-color: #ff3366;
+      --accent-color: #ffc93c;
+      --dark-color: #080b12;
+      --surface-color: #f9fafb;
+      --background-color: #ffffff;
+      --text-primary: #101823;
+      --text-secondary: #384564;
+      --text-tertiary: #5f6e85;
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      
+      /* Borders */
+      --border-radius-sm: 8px;
+      --border-radius: 16px;
+      --border-radius-lg: 24px;
+      
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      --gradient-secondary: linear-gradient(135deg, var(--secondary-color), #ff6b90);
+      --gradient-accent: linear-gradient(135deg, var(--accent-color), #ffb200);
+      
+      /* Grid System */
+      --grid-gap: 2rem;
+      --grid-container-width: 1280px;
+      --section-spacing: 8rem;
+      --element-spacing: 1.5rem;
+    }
+
+    /* Base styles & Typography */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Montserrat', 'PingFang SC', 'Helvetica Neue', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--background-color);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: var(--grid-container-width);
+      padding: 0 24px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', 'PingFang SC', 'Helvetica Neue', sans-serif;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: -1px;
+      font-weight: 800;
+      color: var(--dark-color);
+    }
+
+    h2 {
+      font-size: 3rem;
+      letter-spacing: -0.5px;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .display-text {
+      font-size: 6rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    section {
+      padding: var(--section-spacing) 0;
+      position: relative;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    .text-gradient {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Grid System */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+    }
+
+    .grid-align-center {
+      align-items: center;
+    }
+
+    /* Advanced Preloader */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--background-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+
+    .preloader-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preloader-logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+      color: var(--primary-color);
+    }
+
+    .preloader-logo::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary-color);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: logoLine 2s ease-out forwards;
+    }
+
+    @keyframes logoLine {
+      0% {
+        transform: scaleX(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    }
+
+    .preloader-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .preloader-bar {
+      width: 240px;
+      height: 4px;
+      background: var(--primary-light);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .preloader-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background: var(--gradient-primary);
+      transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    /* Enhanced Navigation */
+    .navbar {
+      padding: 1rem 0;
+      transition: all 0.4s ease;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .navbar.scrolled {
+      padding: 0.75rem 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      position: relative;
+      z-index: 2;
+    }
+
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-item {
+      margin: 0 0.5rem;
+      position: relative;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      padding: 0.75rem 1rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary-color);
+      background-color: var(--primary-light);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      right: 1rem;
+      height: 2px;
+      background-color: var(--primary-color);
+      transform: scaleX(0);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    .navbar-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .toggle-bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 5px auto;
+      background: var(--text-primary);
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Redesigned Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 5rem;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f9fafb 0%, #f0f4ff 100%);
+    }
+
+    .hero-shape {
+      position: absolute;
+      z-index: 0;
+    }
+
+    .hero-shape-1 {
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 70%;
+      background: var(--primary-light);
+      border-radius: 0 0 0 50%;
+      opacity: 0.8;
+      filter: blur(60px);
+      transform: translateY(-30%);
+    }
+
+    .hero-shape-2 {
+      bottom: 0;
+      left: 0;
+      width: 40%;
+      height: 50%;
+      background: rgba(255, 201, 60, 0.15);
+      border-radius: 0 50% 0 0;
+      opacity: 0.7;
+      filter: blur(50px);
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3rem;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    .hero-content {
+      grid-column: 1 / span 6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-image-wrapper {
+      grid-column: 8 / span 5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--primary-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .hero-badge i {
+      margin-right: 0.75rem;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+
+    .hero-title {
+      margin-bottom: 1.5rem;
+      font-size: 3.5rem;
+      line-height: 1.2;
+      color: var(--dark-color);
+      position: relative;
+    }
+
+    .hero-title .highlight {
+      position: relative;
+      z-index: 1;
+      color: var(--primary-color);
+      display: inline-block;
+    }
+
+    .hero-title .highlight::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 5px;
+      width: 100%;
+      height: 12px;
+      background-color: var(--accent-color);
+      z-index: -1;
+      opacity: 0.4;
+      transform-origin: left;
+      animation: highlightReveal 1s 0.5s forwards;
+      transform: scaleX(0);
+    }
+
+    @keyframes highlightReveal {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .hero-text {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      max-width: 550px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-info-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-info {
+      display: inline-flex;
+      align-items: center;
+      background-color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+    }
+
+    .hero-info:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-info i {
+      color: var(--primary-color);
+      margin-right: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .hero-image-container {
+      position: relative;
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 2;
+      border-radius: 24px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      transform-style: preserve-3d;
+      transform: perspective(2000px) rotateY(-5deg) rotateX(5deg);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      transform: scale(1.05);
+      transition: transform 0.5s ease;
+      object-fit: cover;
+    }
+
+    .hero-image:hover {
+      transform: perspective(2000px) rotateY(0) rotateX(0);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-image:hover img {
+      transform: scale(1);
+    }
+
+    .hero-image-backdrop {
+      position: absolute;
+      top: 8%;
+      right: -5%;
+      width: 95%;
+      height: 95%;
+      background: var(--gradient-primary);
+      border-radius: 24px;
+      z-index: 1;
+      opacity: 0.8;
+      filter: blur(15px);
+      transform: perspective(1000px) rotateY(-8deg) rotateX(8deg);
+      animation: floatBackdrop 8s ease-in-out infinite;
+    }
+
+    @keyframes floatBackdrop {
+      0%, 100% {
+        transform: perspective(1000px) rotateY(-8deg) rotateX(8deg) translateY(0);
+      }
+      50% {
+        transform: perspective(1000px) rotateY(-8deg) rotateX(8deg) translateY(-20px);
+      }
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: 0 10px 20px rgba(61, 49, 209, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(61, 49, 209, 0.4);
+      color: white;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      z-index: -1;
+      animation: btn-shine 3s infinite;
+    }
+
+    @keyframes btn-shine {
+      to {
+        left: 100%;
+      }
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-color);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      color: var(--primary-color);
+    }
+
+    .btn-icon {
+      margin-left: 0.75rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover .btn-icon {
+      transform: translateX(3px);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .scroll-indicator:hover {
+      opacity: 1;
+    }
+
+    .scroll-text {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .scroll-mouse {
+      width: 26px;
+      height: 40px;
+      border: 2px solid var(--primary-color);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      padding-top: 5px;
+    }
+
+    .scroll-wheel {
+      width: 4px;
+      height: 8px;
+      background: var(--primary-color);
+      border-radius: 2px;
+      animation: scroll 1.5s ease-out infinite;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(15px);
+        opacity: 0;
+      }
+    }
+
+    /* About Section Redesign */
+    .about-section {
+      position: relative;
+      background: linear-gradient(180deg, var(--background-color) 0%, #f7f9fc 100%);
+      padding: 7rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: inline-block;
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .section-subtitle::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 2px;
+      background: var(--primary-color);
+    }
+
+    .section-title {
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .section-title .highlight {
+      color: var(--primary-color);
+    }
+
+    .section-text {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-image-wrapper {
+      grid-column: 1 / span 5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-image {
+      position: relative;
+      z-index: 2;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.5s ease;
+      transform: scale(1.05);
+    }
+
+    .about-image:hover img {
+      transform: scale(1);
+    }
+
+    .about-image-backdrop {
+      position: absolute;
+      top: -5%;
+      left: -5%;
+      width: 80%;
+      height: 80%;
+      background: var(--gradient-accent);
+      border-radius: var(--border-radius-lg);
+      z-index: 1;
+      opacity: 0.7;
+      filter: blur(20px);
+    }
+
+    .about-content {
+      grid-column: 7 / span 6;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(61, 49, 209, 0.1) 0%, rgba(61, 49, 209, 0) 50%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s ease;
+    }
+
+    .feature-card:hover .feature-icon-wrapper {
+      background: var(--primary-color);
+    }
+
+    .feature-icon {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      transition: all 0.4s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      color: white;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .feature-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Experience Section */
+    .experience-section {
+      background-color: var(--background-color);
+      position: relative;
+      padding: 8rem 0;
+    }
+
+    .experience-shape {
+      position: absolute;
+      z-index: 0;
+    }
+
+    .experience-shape-1 {
+      top: 10%;
+      right: 0;
+      width: 30%;
+      height: 40%;
+      background-color: rgba(255, 51, 102, 0.08);
+      border-radius: 30% 0 0 70%;
+      filter: blur(50px);
+    }
+
+    .experience-shape-2 {
+      bottom: 15%;
+      left: 0;
+      width: 40%;
+      height: 50%;
+      background-color: rgba(61, 49, 209, 0.06);
+      border-radius: 0 30% 0 60%;
+      filter: blur(70px);
+    }
+
+    .tabs-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .tabs-container {
+      background-color: var(--primary-light);
+      border-radius: 100px;
+      padding: 0.5rem;
+      display: inline-flex;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tab-btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 100px;
+      background-color: transparent;
+      color: var(--text-secondary);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 1;
+      font-size: 0.9rem;
+    }
+
+    .tab-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+      box-shadow: 0 8px 16px rgba(61, 49, 209, 0.2);
+    }
+
+    .tab-contents {
+      position: relative;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .experience-card {
+      background-color: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+      position: relative;
+    }
+
+    .experience-header {
+      padding: 2.5rem;
+      position: relative;
+      background: linear-gradient(135deg, var(--primary-light) 0%, rgba(255, 255, 255, 0.5) 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .experience-company {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .company-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .company-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .company-title {
+      color: var(--primary-color);
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .experience-duration {
+      display: inline-block;
+      background-color: white;
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      font-size: 0.9rem;
+    }
+
+    .experience-body {
+      padding: 2.5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 2.5rem;
+      border-left: 2px solid var(--primary-light);
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      box-shadow: 0 0 0 5px var(--primary-light);
+    }
+
+    .timeline-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .timeline-text {
+      margin-bottom: 1.25rem;
+      color: var(--text-secondary);
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .check-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .check-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 3px;
+      color: var(--primary-color);
+    }
+
+    .check-list strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Projects Section */
+    .projects-section {
+      background: linear-gradient(180deg, var(--background-color) 0%, #f7f9fc 100%);
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-header {
+      background: var(--gradient-primary);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-header::before,
+    .project-header::after {
+      content: "";
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .project-header::before {
+      width: 150px;
+      height: 150px;
+      top: -75px;
+      right: -75px;
+    }
+
+    .project-header::after {
+      width: 100px;
+      height: 100px;
+      bottom: -50px;
+      left: -50px;
+    }
+
+    .project-title {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 0;
+    }
+
+    .project-body {
+      padding: 2rem;
+    }
+
+    .project-subtitle {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+      color: var(--text-primary);
+    }
+
+    .project-subtitle::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 40px;
+      height: 3px;
+      background-color: var(--primary-color);
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+
+    .feature-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-list-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      margin-right: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .feature-list-content {
+      color: var(--text-secondary);
+    }
+
+    .feature-list-content strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Skills Section */
+    .skills-section {
+      background: var(--background-color);
+      position: relative;
+      padding: 8rem 0;
+    }
+
+    .skills-shape {
+      position: absolute;
+      z-index: 0;
+    }
+
+    .skills-shape-1 {
+      top: 10%;
+      right: 0;
+      width: 30%;
+      height: 40%;
+      background-color: rgba(255, 201, 60, 0.08);
+      border-radius: 30% 0 0 70%;
+      filter: blur(50px);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .skill-card {
+      background-color: white;
+      border-radius: 24px;
+      overflow: hidden;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-icon-wrapper {
+      width: 70px;
+      height: 70px;
+      border-radius: 18px;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-icon-wrapper::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-primary);
+      top: 8px;
+      left: 8px;
+      z-index: -1;
+      border-radius: inherit;
+      opacity: 0.4;
+      filter: blur(10px);
+      transition: all 0.4s ease;
+    }
+
+    .skill-card:hover .skill-icon-wrapper::before {
+      top: 12px;
+      left: 12px;
+      filter: blur(15px);
+      opacity: 0.6;
+    }
+
+    .skill-icon {
+      color: white;
+      font-size: 2rem;
+    }
+
+    .skill-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .skill-badge-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill-badge {
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+    }
+
+    .skill-badge:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(61, 49, 209, 0.15);
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* Education Card */
+    .education-card {
+      background-color: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      padding: 2rem 2.5rem;
+    }
+
+    .education-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .education-info h5 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+      font-size: 1.25rem;
+    }
+
+    .education-info p {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    .education-date {
+      display: inline-block;
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .education-achievement {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .education-achievement i {
+      color: var(--accent-color);
+      font-size: 1.25rem;
+      margin-right: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .education-achievement p {
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+
+    /* Knowledge Graph */
+    .knowledge-graph-card {
+      background-color: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      margin-top: 4rem;
+    }
+
+    .knowledge-graph-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-light) 0%, rgba(255,255,255,0) 100%);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .knowledge-graph-card h3 {
+      color: var(--primary-color);
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .knowledge-graph-card h3::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary-color);
+      transform: translateX(-50%);
+    }
+
+    .knowledge-graph-card p {
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    #knowledge-graph {
+      width: 100%;
+      height: 500px;
+      margin-top: 2rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(180deg, #f7f9fc 0%, var(--background-color) 100%);
+      position: relative;
+      padding: 8rem 0;
+    }
+
+    .contact-shape {
+      position: absolute;
+      z-index: 0;
+    }
+
+    .contact-shape-1 {
+      bottom: 0;
+      right: 0;
+      width: 30%;
+      height: 40%;
+      background-color: var(--primary-light);
+      border-radius: 30% 0 0 0;
+      filter: blur(50px);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .contact-card {
+      background-color: white;
+      border-radius: 24px;
+      overflow: hidden;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-icon-wrapper {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-icon-wrapper::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-primary);
+      top: 8px;
+      left: 8px;
+      z-index: -1;
+      border-radius: inherit;
+      opacity: 0.4;
+      filter: blur(10px);
+      transition: all 0.4s ease;
+    }
+
+    .contact-card:hover .contact-icon-wrapper::before {
+      top: 12px;
+      left: 12px;
+      filter: blur(15px);
+      opacity: 0.6;
+    }
+
+    .contact-icon {
+      color: white;
+      font-size: 2rem;
+    }
+
+    .contact-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .contact-text {
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--dark-color);
+      padding: 2.5rem 0;
+      position: relative;
+    }
+
+    .footer-text {
+      color: white;
+      opacity: 0.8;
+      margin-bottom: 0;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(61, 49, 209, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 99;
+      font-size: 1.2rem;
+    }
+
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px) rotate(45deg);
+      box-shadow: 0 15px 30px rgba(61, 49, 209, 0.4);
+    }
+
+    /* Progress indicator */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 9999;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient-primary);
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+
+    /* Media Queries */
+    @media (max-width: 1199.98px) {
+      :root {
+        --section-spacing: 6rem;
+      }
+      h1 {
+        font-size: 3.5rem;
+      }
+      .hero-title {
+        font-size: 3rem;
+      }
+      .section-title {
+        font-size: 2.5rem;
+      }
+      .projects-grid,
+      .skills-grid,
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      :root {
+        --section-spacing: 5rem;
+        --grid-gap: 1.5rem;
+      }
+      
+      .navbar-menu {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        padding: 5rem 2rem;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+      }
+      
+      .navbar-menu.active {
+        right: 0;
+      }
+      
+      .navbar-toggle {
+        display: block;
+      }
+      
+      .nav-item {
+        margin: 0.75rem 0;
+        width: 100%;
+      }
+      
+      .nav-link {
+        display: block;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+      
+      .hero-title {
+        font-size: 2.75rem;
+      }
+      
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .hero-content,
+      .hero-image-wrapper {
+        grid-column: 1 / -1;
+      }
+      
+      .hero-image-wrapper {
+        order: -1;
+      }
+      
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .about-image-wrapper,
+      .about-content {
+        grid-column: 1 / -1;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .experience-company {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .experience-duration {
+        margin-top: 1rem;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      :root {
+        --section-spacing: 4rem;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .hero-title {
+        font-size: 2.25rem;
+      }
+      
+      .projects-grid,
+      .skills-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tabs-container {
+        width: 100%;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0.5rem;
+      }
+      
+      .tab-btn {
+        flex-shrink: 0;
+        padding: 0.75rem 1.25rem;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      :root {
+        --grid-gap: 1rem;
+        --section-spacing: 3rem;
+      }
+      
+      h1 {
+        font-size: 2.25rem;
+      }
+      
+      .section-title {
+        font-size: 1.75rem;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      
+      .hero-info-wrapper {
+        flex-direction: column;
+      }
+      
+      .hero-info {
+        width: 100%;
+      }
+      
+      .education-header {
+        flex-direction: column;
+      }
+      
+      .education-date {
+        margin-top: 1rem;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #0E1217;
+        --surface-color: #171C24;
+        --text-primary: #F7F9FC;
+        --text-secondary: #B0B7C3;
+        --text-tertiary: #8A94A6;
+        --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        --dark-color: #F7F9FC;
+      }
+    }
+
+    /* Animation Utilities */
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .animate-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .animate-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Advanced Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">党巍</div>
+      <div class="preloader-bar">
+        <div class="preloader-progress" id="preloader-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Indicator -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-container">
+      <a class="navbar-brand" href="#">党巍</a>
+      
+      <button class="navbar-toggle" id="navbar-toggle">
+        <span class="toggle-bar"></span>
+        <span class="toggle-bar"></span>
+        <span class="toggle-bar"></span>
+      </button>
+      
+      <ul class="navbar-menu" id="navbar-menu">
+        <li class="nav-item">
+          <a class="nav-link active" href="#home">首页</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">关于我</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#experience">工作经历</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">核心项目</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">技能</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">联系方式</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+    
+    <div class="container">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge" data-aos="fade-right">
+            <i class="fas fa-robot"></i> AI/数据产品经理
+          </div>
+          <h1 class="hero-title" data-aos="fade-up">
+            我是 <span class="highlight">党巍</span><br>专注于 AI 创新
+          </h1>
+          <p class="hero-text" data-aos="fade-up" data-aos-delay="100">
+            以数据驱动决策，以 AI 创造价值，我专注于开发智能解决方案，帮助企业提高效率和创新能力。
+          </p>
+          
+          <div class="hero-info-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div class="hero-info">
+              <i class="fas fa-user-tie"></i>
+              <span>男 | 27岁</span>
+            </div>
+            <div class="hero-info">
+              <i class="fas fa-briefcase"></i>
+              <span>5年工作经验</span>
+            </div>
+            <div class="hero-info">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>期望城市：北京</span>
+            </div>
+          </div>
+          
+          <a href="#about" class="btn btn-primary" data-aos="fade-up" data-aos-delay="300">
+            了解更多 <i class="fas fa-arrow-right btn-icon"></i>
+          </a>
+        </div>
+        
+        <div class="hero-image-wrapper" data-aos="fade-left" data-aos-delay="200">
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fHRlY2h8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" alt="AI Technology">
+          </div>
+          <div class="hero-image-backdrop"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <span class="scroll-text">向下滚动</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle" data-aos="fade-up">专业介绍</span>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">关于<span class="highlight">我</span></h2>
+        <p class="section-text" data-aos="fade-up" data-aos-delay="200">我是一名专注于AI产品与数据分析的产品经理，拥有扎实的技术背景和丰富的项目经验，善于将复杂需求转化为可行的技术方案。</p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-image-wrapper" data-aos="fade-right">
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGFpJTIwdGVjaG5vbG9neXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" alt="AI Product Management">
+          </div>
+          <div class="about-image-backdrop animate-float"></div>
+        </div>
+        
+        <div class="about-content" data-aos="fade-left">
+          <div class="feature-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="feature-icon-wrapper">
+                <i class="fas fa-robot feature-icon"></i>
+              </div>
+              <h3 class="feature-title">智能体全流程设计</h3>
+              <p class="feature-text">构建多意图识别-任务分发-专业智能体协同框架，实现用户需求全链路闭环</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="feature-icon-wrapper">
+                <i class="fas fa-graduation-cap feature-icon"></i>
+              </div>
+              <h3 class="feature-title">教育领域AI创新</h3>
+              <p class="feature-text">主导智能推荐系统架构升级，完成基于DeepSeek_v3的垂类规则引擎+LLM融合方案</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="feature-icon-wrapper">
+                <i class="fas fa-cogs feature-icon"></i>
+              </div>
+              <h3 class="feature-title">工程效能专家</h3>
+              <p class="feature-text">设计自动化爬虫体系实现数据「采集-清洗-入库」零人工干预，效率提升8倍</p>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+              <div class="feature-icon-wrapper">
+                <i class="fas fa-code feature-icon"></i>
+              </div>
+              <h3 class="feature-title">全栈技术落地</h3>
+              <p class="feature-text">贯通Python/SQL/BI直至大模型微调，善用AI编程工具（Coze/百炼）加速方案验证</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Experience Section -->
+  <section id="experience" class="experience-section">
+    <div class="experience-shape experience-shape-1"></div>
+    <div class="experience-shape experience-shape-2"></div>
+    
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle" data-aos="fade-up">职业成长</span>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">工作<span class="highlight">经历</span></h2>
+      </div>
+      
+      <div class="tabs-wrapper" data-aos="fade-up" data-aos-delay="200">
+        <div class="tabs-container">
+          <button class="tab-btn active" data-target="aoji">澳际教育</button>
+          <button class="tab-btn" data-target="huoxing">火星时代</button>
+          <button class="tab-btn" data-target="tanxin">贪心科技</button>
+          <button class="tab-btn" data-target="datang">大唐融合</button>
+        </div>
+      </div>
+      
+      <div class="tab-contents">
+        <!-- 澳际教育 -->
+        <div class="tab-content active" id="aoji-content">
+          <div class="experience-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="experience-header">
+              <div class="experience-company">
+                <div class="company-info">
+                  <h3 class="company-name">澳际教育集团</h3>
+                  <div class="company-title">AI产品负责人</div>
+                </div>
+                <div class="experience-duration">2024.09 - 2025.03</div>
+              </div>
+            </div>
+            
+            <div class="experience-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <h4 class="timeline-title">智能定校系统V3（DeepSeek架构升级）</h4>
+                  <p class="timeline-text">推翻传统线性推荐模式，构建「规则引擎（硬性条件过滤） + DeepSeek_v3微调（长尾需求挖掘） 」双核架构，实现：</p>
+                  
+                  <ul class="check-list">
+                    <li>
+                      <strong>智能体服务集成：</strong>用户输入自动分发给院校匹配/背景评估/竞争力分析3大智能体，15秒生成全维度方案
+                    </li>
+                    <li>
+                      <strong>深度需求洞察：</strong>通过多轮对话识别隐藏意图（如转专业倾向/移民需求），输出定制化提升建议报告
+                    </li>
+                    <li>
+                      <strong>服务升级价值：</strong>咨询转化率提升25%，NPS评分达92分（行业平均78分）
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="timeline-item">
+                  <h4 class="timeline-title">院校库智能工坊</h4>
+                  <p class="timeline-text">搭建全自动数据管道：</p>
+                  
+                  <ul class="check-list">
+                    <li>
+                      <strong>爬取：</strong>日均处理50所院校官网数据，单校耗时从5天→4小时（效率提升30倍）
+                    </li>
+                    <li>
+                      <strong>质检：</strong>开发自适应校验规则库，错误率≤0.3%
+                    </li>
+                    <li>
+                      <strong>更新：</strong>实现7×24小时增量同步，高频院校数据延迟＜2小时
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 火星时代 -->
+        <div class="tab-content" id="huoxing-content">
+          <div class="experience-card" data-aos="fade-up">
+            <div class="experience-header">
+              <div class="experience-company">
+                <div class="company-info">
+                  <h3 class="company-name">北京火星时代教育</h3>
+                  <div class="company-title">数据产品经理</div>
+                </div>
+                <div class="experience-duration">2020.09 - 2024.08</div>
+              </div>
+            </div>
+            
+            <div class="experience-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <h4 class="timeline-title">经营决策中枢构建</h4>
+                  
+                  <ul class="check-list">
+                    <li>
+                      <strong>主导完成230+核心报表BI化迁移</strong>，统一3大部门48类指标口径，管理层日活使用量300+次
+                    </li>
+                    <li>
+                      <strong>制定《数据资产管理规范》</strong>，解决跨系统数据同名异义争议53项，团队协作效率提升130%
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="timeline-item">
+                  <h4 class="timeline-title">信息流投放优化</h4>
+                  
+                  <ul class="check-list">
+                    <li>
+                      <strong>设计投放成本监控大盘</strong>（时段/素材/渠道维度），定位低效广告占比超40%
+                    </li>
+                    <li>
+                      <strong>推动策略迭代10+次</strong>，3个月内线索单价从300+元降至190元（降幅37%），ROI从1.3提升至2.4
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 贪心科技 -->
+        <div class="tab-content" id="tanxin-content">
+          <div class="experience-card" data-aos="fade-up">
+            <div class="experience-header">
+              <div class="experience-company">
+                <div class="company-info">
+                  <h3 class="company-name">北京贪心科技</h3>
+                  <div class="company-title">Python教研/助教</div>
+                </div>
+                <div class="experience-duration">2019.07 - 2020.09</div>
+              </div>
+            </div>
+            
+            <div class="experience-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <h4 class="timeline-title">教学与课程开发</h4>
+                  
+                  <ul class="check-list">
+                    <li>
+                      <strong>开发Python数据分析系列课程</strong>，学员结业率从75%提升至92%
+                    </li>
+                    <li>
+                      <strong>撰写《Plotly高阶可视化指南》</strong>被20+企业用作内训教材
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 大唐融合 -->
+        <div class="tab-content" id="datang-content">
+          <div class="experience-card" data-aos="fade-up">
+            <div class="experience-header">
+              <div class="experience-company">
+                <div class="company-info">
+                  <h3 class="company-name">大唐融合通信</h3>
+                  <div class="company-title">Python工程师（实习）</div>
+                </div>
+                <div class="experience-duration">2019.03 - 2019.06</div>
+              </div>
+            </div>
+            
+            <div class="experience-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <h4 class="timeline-title">智能客服优化</h4>
+                  
+                  <ul class="check-list">
+                    <li>
+                      <strong>参与智能客服对话逻辑优化</strong>，单轮对话响应准确率从85%提升至93%
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle" data-aos="fade-up">顶尖作品</span>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">关键<span class="highlight">项目</span></h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card" data-aos="fade-up">
+          <div class="project-header">
+            <h3 class="project-title">智能定校系统V3</h3>
+          </div>
+          <div class="project-body">
+            <h4 class="project-subtitle">技术实现</h4>
+            <ul class="feature-list">
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>规则层：</strong>开发Drools引擎完成98%院校硬门槛判断
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>AI层：</strong>基于DeepSeek_v3微调处理长尾场景（如弱背景逆袭案例）
+                </div>
+              </li>
+            </ul>
+            
+            <h4 class="project-subtitle mt-4">智能体矩阵</h4>
+            <ul class="feature-list">
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>任务路由：</strong>通过意图识别模块分配至专业智能体
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>权威输出：</strong>融合历史申请数据生成竞争力分析报告（GPA百分位/核心课程匹配等12个维度）
+                </div>
+              </li>
+            </ul>
+            
+            <h4 class="project-subtitle mt-4">生产价值</h4>
+            <ul class="feature-list">
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>日均服务量2000+次</strong>，方案采纳率较传统系统提升40%
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>咨询深度提升：</strong>从单一选校建议扩展至全阶段规划（用户平均留存时长+50%）
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-header">
+            <h3 class="project-title">火星时代数据分析中心</h3>
+          </div>
+          <div class="project-body">
+            <h4 class="project-subtitle">管理价值</h4>
+            <ul class="feature-list">
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>决策提效：</strong>构建高管一站式数据中枢，将决策周期从7天缩短至1天
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>资源优化：</strong>通过多维度交叉分析，发现低效投放渠道，年节省预算300万+
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>战略支撑：</strong>提供市场趋势预警，支持3次重大业务方向调整决策
+                </div>
+              </li>
+            </ul>
+            
+            <h4 class="project-subtitle mt-4">技术实现</h4>
+            <ul class="feature-list">
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>设计数据仓库模型</strong>，打通5大业务系统数据孤岛
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>开发230+核心指标看板</strong>，支持钻取/筛选/预警多维分析
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-header">
+            <h3 class="project-title">院校库全自动数据工厂</h3>
+          </div>
+          <div class="project-body">
+            <h4 class="project-subtitle">架构设计</h4>
+            <ul class="feature-list">
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>智能爬取：</strong>使用Scrapy+八爪鱼集群部署，突破反爬限制日均采集10万+字段
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>自动校检：</strong>触发20+校验规则（如费用与排名的逻辑矛盾监控）
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>自动入库：</strong>结构化数据7×24小时增量同步数据库
+                </div>
+              </li>
+              <li>
+                <div class="feature-list-icon">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="feature-list-content">
+                  <strong>效能提升：</strong>维护人工成本减少95%，数据更新时效提升25倍
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="skills-shape skills-shape-1"></div>
+    
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle" data-aos="fade-up">专业能力</span>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">技能与<span class="highlight">工具</span></h2>
+      </div>
+      
+      <div class="skills-grid">
+        <div class="skill-card" data-aos="fade-up">
+          <div class="skill-icon-wrapper">
+            <i class="fas fa-brain skill-icon"></i>
+          </div>
+          <h3 class="skill-title">AI开发</h3>
+          <div class="skill-badge-wrapper">
+            <span class="skill-badge">大模型微调（DeepSeek/Llama）</span>
+            <span class="skill-badge">智能体平台（阿里百炼/Coze）</span>
+            <span class="skill-badge">意图识别</span>
+            <span class="skill-badge">多智能体协同</span>
+          </div>
+        </div>
+        
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-icon-wrapper">
+            <i class="fas fa-database skill-icon"></i>
+          </div>
+          <h3 class="skill-title">数据工程</h3>
+          <div class="skill-badge-wrapper">
+            <span class="skill-badge">Python/SQL/Scrapy</span>
+            <span class="skill-badge">BI工具链（QuickBI/Tableau）</span>
+            <span class="skill-badge">数据仓库模型</span>
+            <span class="skill-badge">可视化报表</span>
+          </div>
+        </div>
+        
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="skill-icon-wrapper">
+            <i class="fas fa-tools skill-icon"></i>
+          </div>
+          <h3 class="skill-title">效率工具</h3>
+          <div class="skill-badge-wrapper">
+            <span class="skill-badge">Cursor/Trae需求分析</span>
+            <span class="skill-badge">Git全流程管理</span>
+            <span class="skill-badge">敏捷开发</span>
+            <span class="skill-badge">迭代规划</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="education-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="education-header">
+          <div class="education-info">
+            <h5>长江大学</h5>
+            <p>信息与计算科学 | 本科</p>
+          </div>
+          <span class="education-date">2015.09 - 2019.06</span>
+        </div>
+        <div class="education-achievement">
+          <i class="fas fa-trophy"></i>
+          <p class="mb-0">
+            大学期间自学Python、机器学习，大四即进入国企实习，参与智能客服项目研发
+          </p>
+        </div>
+      </div>
+      
+      <!-- 知识图谱 -->
+      <div class="knowledge-graph-card" data-aos="fade-up" data-aos-delay="400">
+        <h3>全部项目技能知识图谱</h3>
+        <p>展示所有工作经历中的项目及其使用的技能点，可拖拽节点调整视图</p>
+        <div id="knowledge-graph"></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="contact-shape contact-shape-1"></div>
+    
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle" data-aos="fade-up">联系信息</span>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">联系<span class="highlight">方式</span></h2>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-card" data-aos="fade-up">
+          <div class="contact-icon-wrapper">
+            <i class="fas fa-phone contact-icon"></i>
+          </div>
+          <h4 class="contact-title">电话</h4>
+          <p class="contact-text">13545669822</p>
+        </div>
+        
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="contact-icon-wrapper">
+            <i class="fas fa-envelope contact-icon"></i>
+          </div>
+          <h4 class="contact-title">邮箱</h4>
+          <p class="contact-text">976772215@qq.com</p>
+        </div>
+        
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="contact-icon-wrapper">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+          </div>
+          <h4 class="contact-title">期望城市</h4>
+          <p class="contact-text">北京</p>
+        </div>
+      </div>
+      
+      <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+        <a href="#" class="btn btn-primary" id="download-resume">
+          下载简历 <i class="fas fa-download btn-icon"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">© 2025 党巍 | AI/数据产品经理</p>
+    </div>
+  </footer>
+  
+  <!-- Scroll to top button -->
+  <div class="scroll-top" id="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- ECharts Library -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  
+  <script>
+    // Enhanced Preloader with Animation
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      const progressBar = document.getElementById('preloader-progress');
+      
+      let width = 0;
+      const interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 800);
+          }, 600);
+        } else {
+          width += Math.random() * 5 + 3;
+          width = Math.min(width, 100);
+          progressBar.style.width = width + '%';
+        }
+      }, 100);
+    });
+    
+    // Initialize AOS animation with more natural settings
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: false,
+      mirror: true,
+      offset: 80,
+      delay: 0
+    });
+    
+    // Mobile Navigation Toggle
+    const navbarToggle = document.getElementById('navbar-toggle');
+    const navbarMenu = document.getElementById('navbar-menu');
+    const toggleBars = document.querySelectorAll('.toggle-bar');
+    
+    if (navbarToggle) {
+      navbarToggle.addEventListener('click', () => {
+        navbarMenu.classList.toggle('active');
+        
+        // Animate hamburger to X
+        toggleBars[0].style.transform = navbarMenu.classList.contains('active') 
+          ? 'translateY(7px) rotate(45deg)' 
+          : 'none';
+        
+        toggleBars[1].style.opacity = navbarMenu.classList.contains('active') 
+          ? '0' 
+          : '1';
+        
+        toggleBars[2].style.transform = navbarMenu.classList.contains('active') 
+          ? 'translateY(-7px) rotate(-45deg)' 
+          : 'none';
+      });
+    }
+    
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navbarMenu.classList.contains('active')) {
+          navbarToggle.click();
+        }
+      });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      // Scroll to top button visibility
+      const scrollTop = document.getElementById('scroll-top');
+      if (window.scrollY > 500) {
+        scrollTop.classList.add('active');
+      } else {
+        scrollTop.classList.remove('active');
+      }
+      
+      // Progress bar
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      document.getElementById('progress-bar').style.width = progress + '%';
+      
+      // Active navigation based on scroll position with offset
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.navbar-menu .nav-link');
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#'+ sectionId) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+    
+    // Tabs functionality with smooth transitions
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Hide all tab contents
+        tabContents.forEach(content => content.classList.remove('active'));
+        // Show the corresponding tab content
+        const targetId = button.getAttribute('data-target') + '-content';
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+    
+    // Smooth scrolling for navigation with improved easing
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          const startPosition = window.pageYOffset;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+          const distance = targetPosition - startPosition;
+          const duration = 1000;
+          let start = null;
+          
+          function step(timestamp) {
+            if (!start) start = timestamp;
+            const progress = timestamp - start;
+            const easeInOutCubic = progress => {
+              progress /= duration / 2;
+              if (progress < 1) return distance / 2 * progress * progress * progress;
+              progress -= 2;
+              return distance / 2 * (progress * progress * progress + 2);
+            };
+            
+            window.scrollTo(0, startPosition + easeInOutCubic(progress));
+            if (progress < duration) {
+              window.requestAnimationFrame(step);
+            }
+          }
+          
+          window.requestAnimationFrame(step);
+        }
+      });
+    });
+    
+    // Enhanced Scroll to top button functionality
+    document.getElementById('scroll-top').addEventListener('click', () => {
+      const startPosition = window.pageYOffset;
+      const duration = 800;
+      let start = null;
+      
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const easeInOutQuad = progress => {
+          progress /= duration / 2;
+          if (progress < 1) return (progress * progress) / 2;
+          progress--;
+          return -0.5 * (progress * (progress - 2) - 1);
+        };
+        
+        window.scrollTo(0, startPosition * (1 - easeInOutQuad(progress)));
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      }
+      
+      window.requestAnimationFrame(step);
+    });
+    
+    // 3D effect for hero image with perspective and movement limits
+    const heroImage = document.querySelector('.hero-image');
+    const heroWrapper = document.querySelector('.hero-image-wrapper');
+    
+    if (heroWrapper && heroImage) {
+      heroWrapper.addEventListener('mousemove', (e) => {
+        const rect = heroWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xPercent = x / rect.width;
+        const yPercent = y / rect.height;
+        
+        // Limit rotation angles for more subtle effect
+        const rotateY = (xPercent - 0.5) * 10; // -5 to 5 degrees
+        const rotateX = (0.5 - yPercent) * 10; // -5 to 5 degrees
+        
+        heroImage.style.transform = `perspective(2000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+      });
+      
+      heroWrapper.addEventListener('mouseleave', () => {
+        heroImage.style.transform = 'perspective(2000px) rotateY(0deg) rotateX(0deg)';
+      });
+    }
+    
+    // Custom scroll reveal animation for elements outside viewport
+    function handleScrollReveal() {
+      const elements = document.querySelectorAll('.animate-reveal');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight * 0.9) {
+          element.classList.add('revealed');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', handleScrollReveal);
+    window.addEventListener('load', handleScrollReveal);
+    
+    // 知识图谱图表初始化 - Enhanced with better colors and animations
+    const initKnowledgeGraph = () => {
+      const chartDom = document.getElementById('knowledge-graph');
+      if (!chartDom) return;
+      
+      const myChart = echarts.init(chartDom, null, {
+        renderer: 'canvas'
+      });
+      
+      // Color palette for better contrast and visual hierarchy
+      const palette = {
+        projects: '#3d31d1',
+        aiSkills: '#ff3366',
+        dataSkills: '#30c9e8',
+        toolSkills: '#ffc93c',
+        linkColor: '#e0e6f9',
+        categoryColors: ['#3d31d1', '#ff3366', '#30c9e8', '#ffc93c']
+      };
+      
+      // 项目和技能数据
+      const projects = [
+        // 核心项目
+        { name: '智能定校系统V3', id: 'project1', category: 0, value: 40 },
+        { name: '火星时代数据分析中心', id: 'project2', category: 0, value: 40 },
+        { name: '院校库全自动数据工厂', id: 'project3', category: 0, value: 40 },
+        
+        // 澳际教育项目
+        { name: '智能定校系统V3（DeepSeek架构升级）', id: 'project4', category: 0, value: 35 },
+        { name: '院校库智能工坊', id: 'project5', category: 0, value: 35 },
+        
+        // 火星时代项目
+        { name: '经营决策中枢构建', id: 'project6', category: 0, value: 35 },
+        { name: '信息流投放优化', id: 'project7', category: 0, value: 35 },
+        
+        // 贪心科技项目
+        { name: 'Python数据分析课程开发', id: 'project8', category: 0, value: 30 },
+        { name: 'Plotly高阶可视化指南', id: 'project9', category: 0, value: 30 },
+        
+        // 大唐融合项目
+        { name: '智能客服优化', id: 'project10', category: 0, value: 30 }
+      ];
+      
+      const skills = [
+        // AI开发技能
+        { name: '大模型微调', id: 'skill1', category: 1, value: 35 },
+        { name: '智能体平台', id: 'skill2', category: 1, value: 35 },
+        { name: '意图识别', id: 'skill3', category: 1, value: 35 },
+        { name: '多智能体协同', id: 'skill4', category: 1, value: 35 },
+        
+        // 数据工程技能
+        { name: 'Python/SQL', id: 'skill5', category: 2, value: 35 },
+        { name: 'BI工具链', id: 'skill6', category: 2, value: 35 },
+        { name: '数据仓库模型', id: 'skill7', category: 2, value: 35 },
+        { name: '可视化报表', id: 'skill8', category: 2, value: 35 },
+        { name: 'Scrapy爬虫', id: 'skill9', category: 2, value: 35 },
+        
+        // 效率工具技能
+        { name: 'Git管理', id: 'skill10', category: 3, value: 30 },
+        { name: '敏捷开发', id: 'skill11', category: 3, value: 30 },
+        { name: '迭代规划', id: 'skill12', category: 3, value: 30 }
+      ];
+      
+      // 项目与技能的关联关系
+      const links = [
+        // 智能定校系统V3的技能关联
+        { source: 'project1', target: 'skill1', value: 1 },
+        { source: 'project1', target: 'skill2', value: 1 },
+        { source: 'project1', target: 'skill3', value: 1 },
+        { source: 'project1', target: 'skill4', value: 1 },
+        { source: 'project1', target: 'skill5', value: 1 },
+        
+        // 火星时代数据分析中心的技能关联
+        { source: 'project2', target: 'skill5', value: 1 },
+        { source: 'project2', target: 'skill6', value: 1 },
+        { source: 'project2', target: 'skill7', value: 1 },
+        { source: 'project2', target: 'skill8', value: 1 },
+        { source: 'project2', target: 'skill11', value: 1 },
+        
+        // 院校库全自动数据工厂的技能关联
+        { source: 'project3', target: 'skill5', value: 1 },
+        { source: 'project3', target: 'skill9', value: 1 },
+        { source: 'project3', target: 'skill10', value: 1 },
+        { source: 'project3', target: 'skill12', value: 1 },
+        
+        // 智能定校系统V3（DeepSeek架构升级）的技能关联
+        { source: 'project4', target: 'skill1', value: 1 },
+        { source: 'project4', target: 'skill2', value: 1 },
+        { source: 'project4', target: 'skill3', value: 1 },
+        { source: 'project4', target: 'skill4', value: 1 },
+        { source: 'project4', target: 'skill5', value: 1 },
+        
+        // 院校库智能工坊的技能关联
+        { source: 'project5', target: 'skill5', value: 1 },
+        { source: 'project5', target: 'skill9', value: 1 },
+        { source: 'project5', target: 'skill10', value: 1 },
+        
+        // 经营决策中枢构建的技能关联
+        { source: 'project6', target: 'skill5', value: 1 },
+        { source: 'project6', target: 'skill6', value: 1 },
+        { source: 'project6', target: 'skill7', value: 1 },
+        { source: 'project6', target: 'skill8', value: 1 },
+        
+        // 信息流投放优化的技能关联
+        { source: 'project7', target: 'skill5', value: 1 },
+        { source: 'project7', target: 'skill6', value: 1 },
+        { source: 'project7', target: 'skill8', value: 1 },
+        
+        // Python数据分析课程开发的技能关联
+        { source: 'project8', target: 'skill5', value: 1 },
+        { source: 'project8', target: 'skill8', value: 1 },
+        
+        // Plotly高阶可视化指南的技能关联
+        { source: 'project9', target: 'skill5', value: 1 },
+        { source: 'project9', target: 'skill8', value: 1 },
+        
+        // 智能客服优化的技能关联
+        { source: 'project10', target: 'skill5', value: 1 },
+        { source: 'project10', target: 'skill3', value: 1 }
+      ];
+      
+      // 合并节点数据
+      const nodes = [...projects, ...skills];
+      
+      // 图表配置
+      const option = {
+        tooltip: {
+          trigger: 'item',
+          formatter: function(params) {
+            if (params.dataType === 'node') {
+              return `<div style="font-weight:bold;margin-bottom:5px;">${params.data.name}</div>
+                      <div>${params.data.category === 0 ? '项目' : '技能'}</div>`;
+            }
+            return `${params.data.source} → ${params.data.target}`;
+          },
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          borderColor: '#e0e6f9',
+          borderWidth: 1,
+          padding: 10,
+          textStyle: {
+            color: '#384564'
+          }
+        },
+        legend: {
+          data: ['项目', 'AI开发', '数据工程', '效率工具'],
+          orient: 'horizontal',
+          top: 10,
+          textStyle: {
+            color: '#47557a'
+          },
+          selectedMode: 'multiple',
+          icon: 'circle'
+        },
+        animation: true,
+        animationDuration: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series: [{
+          type: 'graph',
+          layout: 'force',
+          data: nodes.map(node => ({
+            ...node,
+            symbolSize: node.value,
+            itemStyle: {
+              color: palette.categoryColors[node.category]
+            },
+            label: {
+              show: true,
+              position: 'right',
+              formatter: '{b}',
+              fontSize: node.category === 0 ? 14 : 12,
+              fontWeight: node.category === 0 ? 'bold' : 'normal',
+              color: node.category === 0 ? palette.projects : '#47557a'
+            }
+          })),
+          links: links.map(link => ({
+            ...link,
+            lineStyle: {
+              color: palette.linkColor,
+              curveness: 0.2,
+              width: 2,
+              opacity: 0.7
+            }
+          })),
+          categories: [
+            { name: '项目' },
+            { name: 'AI开发' },
+            { name: '数据工程' },
+            { name: '效率工具' }
+          ],
+          roam: true,
+          draggable: true,
+          focusNodeAdjacency: true,
+          emphasis: {
+            focus: 'adjacency',
+            lineStyle: {
+              width: 4,
+              opacity: 1
+            },
+            itemStyle: {
+              opacity: 1
+            },
+            label: {
+              fontSize: 16
+            }
+          },
+          force: {
+            repulsion: 350,
+            edgeLength: 120,
+            gravity: 0.1
+          }
+        }]
+      };
+      
+      // 设置图表选项并渲染
+      myChart.setOption(option);
+      
+      // 响应式调整
+      window.addEventListener('resize', () => {
+        myChart.resize();
+      });
+    };
+    
+    // 页面加载完成后初始化知识图谱
+    window.addEventListener('load', initKnowledgeGraph);
+    
+    // Add perspective tilt effect to all cards
+    const addTiltToCards = () => {
+      const cards = document.querySelectorAll('.feature-card, .project-card, .skill-card, .contact-card');
+      
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          // Skip effect on mobile
+          if (window.innerWidth <= 991) return;
+          
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const xPercent = x / rect.width - 0.5;
+          const yPercent = y / rect.height - 0.5;
+          
+          // Subtle tilt effect
+          const tiltX = yPercent * -5;
+          const tiltY = xPercent * 5;
+          
+          card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(10px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+      });
+    };
+    
+    window.addEventListener('load', addTiltToCards);
+    
+    // 下载简历按钮点击事件 - 调用打印功能
+    document.getElementById('download-resume').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.print();
+    });
+  </script>
+</body>
+</html>
